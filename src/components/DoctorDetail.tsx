@@ -384,6 +384,7 @@ const DoctorDetail: React.FC = () => {
         {
           id: 2,
           beforeImage: "/broken file retrieval bef.jpg",
+          duringImage: "/broken file retrieval during.jpg",
           afterImage: "/broken file retrieval aft.jpg",
           descriptionAr: "تمت معالجته ومعالجه الانسداد و الوصول لاخر القنوات العصبية وتنضيفها تماما ثم الحشو النهائي للجذور",
           descriptionEn: "Successfully treated obstruction and reached the deepest neural canals, completely cleaned and final root filling"
@@ -1288,88 +1289,176 @@ const DoctorDetail: React.FC = () => {
                    ))}
                  </div>
                ) : doctor.id === 5 ? (
-                 // X-Ray Gallery for Dr. Osama
-                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                 // Gallery for Dr. Osama - Supports 3 images (before/during/after) or single image
+                 <div className={doctor.cases.some(c => c.duringImage) ? "space-y-12" : "grid grid-cols-1 lg:grid-cols-3 gap-8"}>
                    {doctor.cases.map((caseItem, index) => (
-                     <div
-                       key={caseItem.id}
-                       className="group relative bg-gradient-to-br from-gray-50 to-slate-100 rounded-3xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-700 hover:shadow-2xl border border-gray-200"
-                     >
-                       {/* Image Container */}
-                       <div className="relative overflow-hidden">
-                         <img
-                           src={caseItem.beforeImage}
-                           alt={language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}
-                           className="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-700 bg-black"
-                         />
+                     caseItem.duringImage ? (
+                       // Case with 3 images: Before, During, After
+                       <div
+                         key={caseItem.id}
+                         className="bg-white rounded-xl shadow-lg p-4 relative overflow-hidden max-w-4xl mx-auto"
+                       >
+                         {/* Background Pattern */}
+                         <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-gray-100 to-slate-200 rounded-full -translate-y-12 translate-x-12 opacity-50"></div>
+                         <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-gray-100 to-slate-200 rounded-full translate-y-8 -translate-x-8 opacity-50"></div>
                          
-                         {/* X-Ray Overlay */}
-                         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-800/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                           <div className="absolute bottom-6 left-6 right-6">
-                             <h3 className={`text-white text-lg font-semibold mb-2 ${
+                         {/* Case Number Badge */}
+                         <div className="absolute top-4 right-4 bg-gradient-to-r from-gray-700 to-gray-900 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg z-20">
+                           {language === 'ar' ? `حالة ${index + 1}` : `Case ${index + 1}`}
+                         </div>
+                         
+                         {/* Images Container */}
+                         <div className="relative z-10 mt-2">
+                           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+                             {/* Before Image */}
+                             <div className="relative">
+                               <div className="bg-gradient-to-br from-red-50 to-red-100 p-2 rounded-lg">
+                                 <h4 className={`text-sm font-semibold text-red-700 mb-2 text-center ${
+                                   language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                                 }`}>
+                                   {language === 'ar' ? 'قبل' : 'Before'}
+                                 </h4>
+                                 <img
+                                   src={caseItem.beforeImage}
+                                   alt={`Before - ${language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}`}
+                                   className="w-full h-auto object-contain rounded-lg shadow-md max-h-48"
+                                 />
+                               </div>
+                             </div>
+
+                             {/* During Image */}
+                             <div className="relative">
+                               <div className="bg-gradient-to-br from-yellow-50 to-orange-100 p-2 rounded-lg">
+                                 <h4 className={`text-sm font-semibold text-orange-700 mb-2 text-center ${
+                                   language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                                 }`}>
+                                   {language === 'ar' ? 'أثناء' : 'During'}
+                                 </h4>
+                                 <img
+                                   src={caseItem.duringImage}
+                                   alt={`During - ${language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}`}
+                                   className="w-full h-auto object-contain rounded-lg shadow-md max-h-48"
+                                 />
+                               </div>
+                             </div>
+
+                             {/* After Image */}
+                             <div className="relative">
+                               <div className="bg-gradient-to-br from-green-50 to-green-100 p-2 rounded-lg">
+                                 <h4 className={`text-sm font-semibold text-green-700 mb-2 text-center ${
+                                   language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                                 }`}>
+                                   {language === 'ar' ? 'بعد' : 'After'}
+                                 </h4>
+                                 <img
+                                   src={caseItem.afterImage}
+                                   alt={`After - ${language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}`}
+                                   className="w-full h-auto object-contain rounded-lg shadow-md max-h-48"
+                                 />
+                               </div>
+                             </div>
+                           </div>
+
+                           {/* Description Text Beneath */}
+                           <div className="text-center bg-gradient-to-r from-gray-50 to-slate-50 p-3 rounded-lg">
+                             <h3 className={`text-lg font-bold text-gray-800 mb-2 ${
                                language === 'ar' ? 'font-cairo' : 'font-montserrat'
                              }`}>
                                {language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}
                              </h3>
-                             <p className={`text-gray-200 text-sm ${
+                             <p className={`text-gray-600 text-sm ${
                                language === 'ar' ? 'font-cairo' : 'font-montserrat'
                              }`}>
                                {language === 'ar' 
-                                 ? 'تم العلاج بنجاح باستخدام أحدث تقنيات علاج الجذور' 
-                                 : 'Successfully treated using the latest endodontic techniques'
+                                 ? 'تم العلاج بنجاح باستخدام أحدث تقنيات علاج الجذور مع ضمان النتائج المثلى' 
+                                 : 'Successfully treated using the latest endodontic techniques with guaranteed optimal results'
                                }
                              </p>
                            </div>
                          </div>
-                         
-                         {/* Case Number Badge */}
-                         <div className="absolute top-6 right-6 bg-gradient-to-r from-gray-700 to-gray-900 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                           {language === 'ar' ? `حالة ${index + 1}` : `Case ${index + 1}`}
-                         </div>
-                         
-                         {/* X-Ray Badge */}
-                         <div className="absolute top-6 left-6 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-                           {language === 'ar' ? 'أشعة سينية' : 'X-Ray'}
-                         </div>
                        </div>
-                       
-                       {/* Description */}
-                       <div className="p-6">
-                         <h3 className={`text-xl font-bold text-gray-800 mb-3 ${
-                           language === 'ar' ? 'font-cairo' : 'font-montserrat'
-                         }`}>
-                           {language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}
-                         </h3>
-                         <p className={`text-gray-600 text-sm leading-relaxed ${
-                           language === 'ar' ? 'font-cairo' : 'font-montserrat'
-                         }`}>
-                           {language === 'ar' 
-                             ? 'تم العلاج بنجاح باستخدام أحدث تقنيات علاج الجذور مع ضمان النتائج المثلى' 
-                             : 'Successfully treated using the latest endodontic techniques with guaranteed optimal results'
-                           }
-                         </p>
-                         
-                         {/* Treatment Stats */}
-                         <div className="mt-4 flex justify-between items-center">
-                           <div className="flex items-center space-x-2">
-                             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                             <span className={`text-xs text-gray-500 ${
-                               language === 'ar' ? 'font-cairo' : 'font-montserrat'
-                             }`}>
-                               {language === 'ar' ? 'علاج متقدم' : 'Advanced Treatment'}
-                             </span>
+                     ) : (
+                       // Case with single image (X-Ray style)
+                       <div
+                         key={caseItem.id}
+                         className="group relative bg-gradient-to-br from-gray-50 to-slate-100 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-700 hover:shadow-xl border border-gray-200 max-w-md mx-auto"
+                       >
+                         {/* Image Container */}
+                         <div className="relative overflow-hidden">
+                           <img
+                             src={caseItem.beforeImage}
+                             alt={language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}
+                             className="w-full h-auto object-contain transform group-hover:scale-105 transition-transform duration-700 max-h-64"
+                           />
+                           
+                           {/* X-Ray Overlay */}
+                           <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-800/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                             <div className="absolute bottom-4 left-4 right-4">
+                               <h3 className={`text-white text-sm font-semibold mb-1 ${
+                                 language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                               }`}>
+                                 {language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}
+                               </h3>
+                               <p className={`text-gray-200 text-xs ${
+                                 language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                               }`}>
+                                 {language === 'ar' 
+                                   ? 'تم العلاج بنجاح باستخدام أحدث تقنيات علاج الجذور' 
+                                   : 'Successfully treated using the latest endodontic techniques'
+                                 }
+                               </p>
+                             </div>
                            </div>
-                           <div className="flex items-center space-x-2">
-                             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                             <span className={`text-xs text-gray-500 ${
-                               language === 'ar' ? 'font-cairo' : 'font-montserrat'
-                             }`}>
-                               {language === 'ar' ? 'نتيجة مثلى' : 'Optimal Result'}
-                             </span>
+                           
+                           {/* Case Number Badge */}
+                           <div className="absolute top-3 right-3 bg-gradient-to-r from-gray-700 to-gray-900 text-white px-2 py-1 rounded-full text-xs font-semibold shadow-lg">
+                             {language === 'ar' ? `حالة ${index + 1}` : `Case ${index + 1}`}
+                           </div>
+                           
+                           {/* X-Ray Badge */}
+                           <div className="absolute top-3 left-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-2 py-1 rounded-full text-xs font-semibold shadow-lg">
+                             {language === 'ar' ? 'أشعة سينية' : 'X-Ray'}
                            </div>
                          </div>
+                         
+                         {/* Description */}
+                         <div className="p-4">
+                           <h3 className={`text-base font-bold text-gray-800 mb-2 ${
+                             language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                           }`}>
+                             {language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}
+                           </h3>
+                           <p className={`text-gray-600 text-xs leading-relaxed ${
+                             language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                           }`}>
+                             {language === 'ar' 
+                               ? 'تم العلاج بنجاح باستخدام أحدث تقنيات علاج الجذور مع ضمان النتائج المثلى' 
+                               : 'Successfully treated using the latest endodontic techniques with guaranteed optimal results'
+                             }
+                           </p>
+                           
+                           {/* Treatment Stats */}
+                           <div className="mt-3 flex justify-between items-center">
+                             <div className="flex items-center space-x-1">
+                               <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+                               <span className={`text-xs text-gray-500 ${
+                                 language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                               }`}>
+                                 {language === 'ar' ? 'علاج متقدم' : 'Advanced Treatment'}
+                               </span>
+                             </div>
+                             <div className="flex items-center space-x-1">
+                               <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+                               <span className={`text-xs text-gray-500 ${
+                                 language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                               }`}>
+                                 {language === 'ar' ? 'نتيجة مثلى' : 'Optimal Result'}
+                               </span>
+                             </div>
+                           </div>
+                         </div>
                        </div>
-                     </div>
+                     )
                    ))}
                  </div>
                                ) : doctor.id === 6 ? (
