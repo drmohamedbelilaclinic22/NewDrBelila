@@ -20,6 +20,7 @@ interface Doctor {
     beforeImage: string;
     afterImage: string;
     duringImage?: string;
+    removalImage?: string;
     descriptionAr: string;
     descriptionEn: string;
   }>;
@@ -383,18 +384,12 @@ const DoctorDetail: React.FC = () => {
         },
         {
           id: 2,
-          beforeImage: "/broken file retrieval bef.jpg",
+          beforeImage: "/broken file retrieval aft.jpg",
           duringImage: "/broken file retrieval during.jpg",
-          afterImage: "/broken file retrieval aft.jpg",
-          descriptionAr: "تمت معالجته ومعالجه الانسداد و الوصول لاخر القنوات العصبية وتنضيفها تماما ثم الحشو النهائي للجذور",
-          descriptionEn: "Successfully treated obstruction and reached the deepest neural canals, completely cleaned and final root filling"
-        },
-        {
-          id: 3,
-          beforeImage: "https://i.postimg.cc/8PnKfYKf/A.png",
-          afterImage: "https://i.postimg.cc/8PnKfYKf/A.png",
-          descriptionAr: "حاله ازاله ابر مكسوره",
-          descriptionEn: "Broken needle extraction case"
+          removalImage: "https://i.postimg.cc/8PnKfYKf/A.png",
+          afterImage: "/broken file retrieval bef.jpg",
+          descriptionAr: "تمت معالجته ومعالجه الانسداد و الوصول لاخر القنوات العصبية وتنضيفها تماما ثم الحشو النهائي للجذور - إزالة إبرة مكسورة",
+          descriptionEn: "Successfully treated obstruction and reached the deepest neural canals, completely cleaned and final root filling - Broken file removal"
         }
       ],
              reviews: [
@@ -1289,10 +1284,111 @@ const DoctorDetail: React.FC = () => {
                    ))}
                  </div>
                ) : doctor.id === 5 ? (
-                 // Gallery for Dr. Osama - Supports 3 images (before/during/after) or single image
+                 // Gallery for Dr. Osama - Supports 4 images (before/during/removal/after), 3 images (before/during/after), or single image
                  <div className={doctor.cases.some(c => c.duringImage) ? "space-y-12" : "grid grid-cols-1 lg:grid-cols-3 gap-8"}>
                    {doctor.cases.map((caseItem, index) => (
-                     caseItem.duringImage ? (
+                     caseItem.removalImage ? (
+                       // Case with 4 images: Before, During, Broken File Removal, After
+                       <div
+                         key={caseItem.id}
+                         className="bg-white rounded-xl shadow-lg p-4 relative overflow-hidden max-w-5xl mx-auto"
+                       >
+                         {/* Background Pattern */}
+                         <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-gray-100 to-slate-200 rounded-full -translate-y-12 translate-x-12 opacity-50"></div>
+                         <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-gray-100 to-slate-200 rounded-full translate-y-8 -translate-x-8 opacity-50"></div>
+                         
+                         {/* Case Number Badge */}
+                         <div className="absolute top-4 right-4 bg-gradient-to-r from-gray-700 to-gray-900 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg z-20">
+                           {language === 'ar' ? `حالة ${index + 1}` : `Case ${index + 1}`}
+                         </div>
+                         
+                         {/* Images Container */}
+                         <div className="relative z-10 mt-2">
+                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+                             {/* Before Image */}
+                             <div className="relative">
+                               <div className="bg-gradient-to-br from-red-50 to-red-100 p-2 rounded-lg">
+                                 <h4 className={`text-sm font-semibold text-red-700 mb-2 text-center ${
+                                   language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                                 }`}>
+                                   {language === 'ar' ? 'قبل' : 'Before'}
+                                 </h4>
+                                 <img
+                                   src={caseItem.beforeImage}
+                                   alt={`Before - ${language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}`}
+                                   className="w-full h-auto object-contain rounded-lg shadow-md max-h-48"
+                                 />
+                               </div>
+                             </div>
+
+                             {/* During Image */}
+                             <div className="relative">
+                               <div className="bg-gradient-to-br from-yellow-50 to-orange-100 p-2 rounded-lg">
+                                 <h4 className={`text-sm font-semibold text-orange-700 mb-2 text-center ${
+                                   language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                                 }`}>
+                                   {language === 'ar' ? 'أثناء' : 'During'}
+                                 </h4>
+                                 <img
+                                   src={caseItem.duringImage}
+                                   alt={`During - ${language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}`}
+                                   className="w-full h-auto object-contain rounded-lg shadow-md max-h-48"
+                                 />
+                               </div>
+                             </div>
+
+                             {/* Broken File Removal Image */}
+                             <div className="relative">
+                               <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-2 rounded-lg">
+                                 <h4 className={`text-sm font-semibold text-purple-700 mb-2 text-center ${
+                                   language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                                 }`}>
+                                   {language === 'ar' ? 'إزالة الإبرة' : 'File Removal'}
+                                 </h4>
+                                 <img
+                                   src={caseItem.removalImage}
+                                   alt={`File Removal - ${language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}`}
+                                   className="w-full h-auto object-contain rounded-lg shadow-md max-h-48"
+                                 />
+                               </div>
+                             </div>
+
+                             {/* After Image */}
+                             <div className="relative">
+                               <div className="bg-gradient-to-br from-green-50 to-green-100 p-2 rounded-lg">
+                                 <h4 className={`text-sm font-semibold text-green-700 mb-2 text-center ${
+                                   language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                                 }`}>
+                                   {language === 'ar' ? 'بعد' : 'After'}
+                                 </h4>
+                                 <img
+                                   src={caseItem.afterImage}
+                                   alt={`After - ${language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}`}
+                                   className="w-full h-auto object-contain rounded-lg shadow-md max-h-48"
+                                 />
+                               </div>
+                             </div>
+                           </div>
+
+                           {/* Description Text Beneath */}
+                           <div className="text-center bg-gradient-to-r from-gray-50 to-slate-50 p-3 rounded-lg">
+                             <h3 className={`text-lg font-bold text-gray-800 mb-2 ${
+                               language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                             }`}>
+                               {language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}
+                             </h3>
+                             <p className={`text-gray-600 text-sm ${
+                               language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                             }`}>
+                               {language === 'ar' 
+                                 ? 'تم العلاج بنجاح باستخدام أحدث تقنيات علاج الجذور مع ضمان النتائج المثلى' 
+                                 : 'Successfully treated using the latest endodontic techniques with guaranteed optimal results'
+                               }
+                             </p>
+                           </div>
+                         </div>
+                       </div>
+                     ) : caseItem.duringImage ? (
                        // Case with 3 images: Before, During, After
                        <div
                          key={caseItem.id}
