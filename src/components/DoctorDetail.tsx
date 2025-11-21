@@ -586,24 +586,18 @@ const DoctorDetail: React.FC = () => {
        descriptionEn: "Specialist in Oral & Dental Medicine",
       image: "https://i.postimg.cc/XNk0F2tJ/Dr-Kareem.png",
               cases: [
-          {
-            id: 1,
-            beforeImage: "",
-            afterImage: "/kareem 1.png",
-            descriptionAr: "حالة استعادة تجويف عميق بالكومبوزيت",
-            descriptionEn: "Deep cavity restoration with composite"
-          },
+
           {
             id: 2,
-            beforeImage: "/kareem 2 endo.png",
-            afterImage: "/kareem 2 endo after.png",
+            beforeImage: "/kareem composite.png",
+            afterImage: "/kareem 3 endo after.png",
             descriptionAr: "علاج الجذور",
             descriptionEn: "Root canal treatment"
           },
           {
             id: 3,
             beforeImage: "/kareem 3 endo before.png",
-            afterImage: "/kareem 3 endo after.png",
+            afterImage: "/kareem 2 endo after.png",
             descriptionAr: "علاج الجذور وإزالة إبرة مكسورة",
             descriptionEn: "Root canal treatment and broken file removal"
           }
