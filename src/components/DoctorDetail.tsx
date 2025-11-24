@@ -758,8 +758,24 @@ const DoctorDetail: React.FC = () => {
        titleEn: "Oral & Dental Medicine Specialist",
        descriptionAr: "متخصصة في طب الفم والاسنان",
        descriptionEn: "Specialist in Oral & Dental Medicine",
-       image: "https://i.postimg.cc/ZKJ4Mk6p/Dr-Amal.png",
-               reviews: [
+      image: "https://i.postimg.cc/ZKJ4Mk6p/Dr-Amal.png",
+      cases: [
+        {
+          id: 1,
+          beforeImage: "/anterior composite before.jpg",
+          afterImage: "/anterior composite after.jpg",
+          descriptionAr: "حالة علاج الأنياب العلوية بالحشو التجميلي الابيض يعيد المظهر الطبيعي والجمالي للمريض",
+          descriptionEn: "Composite restoration for upper canine that restores the natural appearance and aesthetics of the patient"
+        },
+        {
+          id: 2,
+          beforeImage: "/amalgam rettt.jpg",
+          afterImage: "/amalgam rettt after.jpg",
+          descriptionAr: "حالة إعادة علاج الأملغم - إزالة الأملغم واستبداله بالحشو التجميلي الابيض",
+          descriptionEn: "Amalgam retreatment case - removing amalgam and replacing it with composite"
+        }
+      ],
+      reviews: [
           {
             id: 1,
             nameAr: "فاطمة محمد علي",
@@ -2148,6 +2164,79 @@ const DoctorDetail: React.FC = () => {
                          </div>
                        </div>
                      </div>
+                   </div>
+                 ) : doctor.id === 10 ? (
+                   // Before/After Gallery for Dr. Amal - Side by Side
+                   <div className="space-y-12">
+                     {doctor.cases.map((caseItem, index) => (
+                       <div
+                         key={caseItem.id}
+                         className="bg-white rounded-2xl shadow-xl p-8 relative overflow-hidden"
+                       >
+                         {/* Background Pattern */}
+                         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-cyan-200 rounded-full -translate-y-16 translate-x-16 opacity-50"></div>
+                         <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-indigo-100 to-purple-200 rounded-full translate-y-12 -translate-x-12 opacity-50"></div>
+                         
+                         {/* Case Number Badge */}
+                         <div className="absolute top-8 right-8 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg z-20">
+                           {language === 'ar' ? `حالة ${index + 1}` : `Case ${index + 1}`}
+                         </div>
+
+                         {/* Before/After Images Side by Side */}
+                         <div className="relative z-10">
+                           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                             {/* Before Image */}
+                             <div className="relative">
+                               <div className="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-xl">
+                                 <h4 className={`text-lg font-semibold text-red-700 mb-4 text-center ${
+                                   language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                                 }`}>
+                                   {language === 'ar' ? 'قبل العلاج' : 'Before Treatment'}
+                                 </h4>
+                                 <img
+                                   src={caseItem.beforeImage}
+                                   alt={`Before - ${language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}`}
+                                   className="w-full h-80 object-cover rounded-lg shadow-lg"
+                                 />
+                               </div>
+                             </div>
+
+                             {/* After Image */}
+                             <div className="relative">
+                               <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl">
+                                 <h4 className={`text-lg font-semibold text-green-700 mb-4 text-center ${
+                                   language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                                 }`}>
+                                   {language === 'ar' ? 'بعد العلاج' : 'After Treatment'}
+                                 </h4>
+                                 <img
+                                   src={caseItem.afterImage}
+                                   alt={`After - ${language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}`}
+                                   className="w-full h-80 object-cover rounded-lg shadow-lg"
+                                 />
+                               </div>
+                             </div>
+                           </div>
+
+                           {/* Case Description */}
+                           <div className="text-center">
+                             <h3 className={`text-2xl font-bold text-gray-800 mb-4 ${
+                               language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                             }`}>
+                               {language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}
+                             </h3>
+                             <p className={`text-gray-600 text-lg ${
+                               language === 'ar' ? 'font-cairo' : 'font-montserrat'
+                             }`}>
+                               {language === 'ar' 
+                                 ? 'تم العلاج بنجاح باستخدام أحدث التقنيات المتخصصة' 
+                                 : 'Successfully treated using the latest specialized techniques'
+                               }
+                             </p>
+                           </div>
+                         </div>
+                       </div>
+                     ))}
                    </div>
                  ) : (
                  // Grid for other doctors
