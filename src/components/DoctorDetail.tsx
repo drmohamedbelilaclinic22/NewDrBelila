@@ -938,8 +938,8 @@ const DoctorDetail: React.FC = () => {
 
       {/* Case Gallery Section */}
       {doctor.cases && doctor.cases.length > 0 && (
-        <section className="w-full bg-white py-20">
-          <div className="max-w-6xl mx-auto px-4">
+        <section className="w-full bg-white py-12 md:py-16 lg:py-20">
+          <div className={`max-w-6xl mx-auto px-3 md:px-4 ${language === 'en' ? 'pr-10 md:pr-4' : 'pl-10 md:pl-4'}`}>
             <div className="text-center mb-16">
               <h2 className={`text-4xl font-bold text-gray-800 mb-6 ${
                 language === 'ar' ? 'font-cairo' : 'font-montserrat'
@@ -2167,11 +2167,11 @@ const DoctorDetail: React.FC = () => {
                    </div>
                  ) : doctor.id === 10 ? (
                    // Before/After Gallery for Dr. Amal - Side by Side
-                   <div className="space-y-6 md:space-y-12">
+                   <div className="space-y-4 md:space-y-8 lg:space-y-12 w-full">
                      {doctor.cases.map((caseItem, index) => (
                        <div
                          key={caseItem.id}
-                         className="bg-white rounded-xl md:rounded-2xl shadow-xl p-4 md:p-6 lg:p-8 relative overflow-hidden w-full"
+                         className="bg-white rounded-xl md:rounded-2xl shadow-xl p-3 md:p-5 lg:p-8 relative overflow-hidden w-full max-w-full"
                        >
                          {/* Background Pattern */}
                          <div className={`absolute top-0 ${language === 'ar' ? 'right-0' : 'left-0'} w-20 h-20 md:w-32 md:h-32 bg-gradient-to-br from-blue-100 to-cyan-200 rounded-full -translate-y-10 md:-translate-y-16 ${language === 'ar' ? 'translate-x-10 md:translate-x-16' : '-translate-x-10 md:-translate-x-16'} opacity-50`}></div>
@@ -2183,11 +2183,11 @@ const DoctorDetail: React.FC = () => {
                          </div>
 
                          {/* Before/After Images Side by Side */}
-                         <div className="relative z-10 w-full">
-                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 lg:gap-8 mb-4 md:mb-6">
+                         <div className="relative z-10 w-full max-w-full">
+                           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 lg:gap-8 mb-3 md:mb-4 lg:mb-6">
                              {/* Before Image */}
-                             <div className="relative w-full">
-                               <div className="bg-gradient-to-br from-red-50 to-red-100 p-2 md:p-3 lg:p-4 rounded-lg md:rounded-xl w-full">
+                             <div className="relative w-full max-w-full">
+                               <div className="bg-gradient-to-br from-red-50 to-red-100 p-2 md:p-3 lg:p-4 rounded-lg md:rounded-xl w-full max-w-full">
                                  <h4 className={`text-sm md:text-base lg:text-lg font-semibold text-red-700 mb-2 md:mb-3 lg:mb-4 text-center break-words ${
                                    language === 'ar' ? 'font-cairo' : 'font-montserrat'
                                  }`}>
@@ -2202,8 +2202,8 @@ const DoctorDetail: React.FC = () => {
                              </div>
 
                              {/* After Image */}
-                             <div className="relative w-full">
-                               <div className="bg-gradient-to-br from-green-50 to-green-100 p-2 md:p-3 lg:p-4 rounded-lg md:rounded-xl w-full">
+                             <div className="relative w-full max-w-full">
+                               <div className="bg-gradient-to-br from-green-50 to-green-100 p-2 md:p-3 lg:p-4 rounded-lg md:rounded-xl w-full max-w-full">
                                  <h4 className={`text-sm md:text-base lg:text-lg font-semibold text-green-700 mb-2 md:mb-3 lg:mb-4 text-center break-words ${
                                    language === 'ar' ? 'font-cairo' : 'font-montserrat'
                                  }`}>
@@ -2219,8 +2219,8 @@ const DoctorDetail: React.FC = () => {
                            </div>
 
                            {/* Case Description */}
-                           <div className="text-center px-1 md:px-2 w-full">
-                             <h3 className={`text-base md:text-lg lg:text-xl xl:text-2xl font-bold text-gray-800 mb-2 md:mb-3 lg:mb-4 break-words leading-tight ${
+                           <div className="text-center px-0 md:px-2 w-full max-w-full">
+                             <h3 className={`text-sm md:text-base lg:text-xl xl:text-2xl font-bold text-gray-800 mb-1 md:mb-2 lg:mb-4 break-words leading-tight ${
                                language === 'ar' ? 'font-cairo' : 'font-montserrat'
                              }`}>
                                {language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}
@@ -2421,11 +2421,11 @@ const DoctorDetail: React.FC = () => {
          href="https://www.facebook.com/profile.php?id=100094644267456"
          target="_blank"
          rel="noopener noreferrer"
-         className="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 animate-bounce"
+         className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white p-2 md:p-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 animate-bounce"
          aria-label="Visit our Facebook page"
        >
          <svg
-           className="w-6 h-6"
+           className="w-4 h-4 md:w-6 md:h-6"
            fill="currentColor"
            viewBox="0 0 24 24"
            xmlns="http://www.w3.org/2000/svg"
