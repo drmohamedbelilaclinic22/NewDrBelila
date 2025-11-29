@@ -939,7 +939,7 @@ const DoctorDetail: React.FC = () => {
       {/* Case Gallery Section */}
       {doctor.cases && doctor.cases.length > 0 && (
         <section className="w-full bg-white py-12 md:py-16 lg:py-20">
-          <div className={`max-w-6xl mx-auto px-3 md:px-4 ${language === 'en' ? 'pr-10 md:pr-4' : 'pl-10 md:pl-4'}`}>
+          <div className="max-w-6xl mx-auto px-3 md:px-4">
             <div className="text-center mb-16">
               <h2 className={`text-4xl font-bold text-gray-800 mb-6 ${
                 language === 'ar' ? 'font-cairo' : 'font-montserrat'
@@ -2167,28 +2167,28 @@ const DoctorDetail: React.FC = () => {
                    </div>
                  ) : doctor.id === 10 ? (
                    // Before/After Gallery for Dr. Amal - Side by Side
-                   <div className="space-y-4 md:space-y-8 lg:space-y-12 w-full">
+                   <div className="space-y-3 md:space-y-6 lg:space-y-8 w-full">
                      {doctor.cases.map((caseItem, index) => (
                        <div
                          key={caseItem.id}
-                         className="bg-white rounded-xl md:rounded-2xl shadow-xl p-3 md:p-5 lg:p-8 relative overflow-hidden w-full max-w-full"
+                         className="bg-white rounded-xl md:rounded-2xl shadow-xl p-2 md:p-4 lg:p-6 relative overflow-hidden w-full"
                        >
                          {/* Background Pattern */}
-                         <div className={`absolute top-0 ${language === 'ar' ? 'right-0' : 'left-0'} w-20 h-20 md:w-32 md:h-32 bg-gradient-to-br from-blue-100 to-cyan-200 rounded-full -translate-y-10 md:-translate-y-16 ${language === 'ar' ? 'translate-x-10 md:translate-x-16' : '-translate-x-10 md:-translate-x-16'} opacity-50`}></div>
-                         <div className={`absolute bottom-0 ${language === 'ar' ? 'left-0' : 'right-0'} w-16 h-16 md:w-24 md:h-24 bg-gradient-to-tr from-indigo-100 to-purple-200 rounded-full translate-y-8 md:translate-y-12 ${language === 'ar' ? '-translate-x-8 md:-translate-x-12' : 'translate-x-8 md:translate-x-12'} opacity-50`}></div>
+                         <div className={`absolute top-0 ${language === 'ar' ? 'right-0' : 'left-0'} w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-blue-100 to-cyan-200 rounded-full -translate-y-8 md:-translate-y-12 lg:-translate-y-16 ${language === 'ar' ? 'translate-x-8 md:translate-x-12 lg:translate-x-16' : '-translate-x-8 md:-translate-x-12 lg:-translate-x-16'} opacity-50`}></div>
+                         <div className={`absolute bottom-0 ${language === 'ar' ? 'left-0' : 'right-0'} w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24 bg-gradient-to-tr from-indigo-100 to-purple-200 rounded-full translate-y-6 md:translate-y-8 lg:translate-y-12 ${language === 'ar' ? '-translate-x-6 md:-translate-x-8 lg:-translate-x-12' : 'translate-x-6 md:translate-x-8 lg:translate-x-12'} opacity-50`}></div>
                          
                          {/* Case Number Badge */}
-                         <div className={`absolute top-3 md:top-6 lg:top-8 ${language === 'ar' ? 'right-3 md:right-6 lg:right-8' : 'left-3 md:left-6 lg:left-8'} bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-2 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 rounded-full text-xs md:text-sm font-semibold shadow-lg z-20 whitespace-nowrap`}>
+                         <div className={`absolute top-2 md:top-4 lg:top-6 ${language === 'ar' ? 'right-2 md:right-4 lg:right-6' : 'left-2 md:left-4 lg:left-6'} bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-2 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 rounded-full text-xs md:text-sm font-semibold shadow-lg z-20 whitespace-nowrap`}>
                            {language === 'ar' ? `حالة ${index + 1}` : `Case ${index + 1}`}
                          </div>
 
                          {/* Before/After Images Side by Side */}
-                         <div className="relative z-10 w-full max-w-full">
-                           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 lg:gap-8 mb-3 md:mb-4 lg:mb-6">
+                         <div className="relative z-10 w-full">
+                           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 lg:gap-6 mb-2 md:mb-3 lg:mb-4">
                              {/* Before Image */}
-                             <div className="relative w-full max-w-full">
-                               <div className="bg-gradient-to-br from-red-50 to-red-100 p-2 md:p-3 lg:p-4 rounded-lg md:rounded-xl w-full max-w-full">
-                                 <h4 className={`text-sm md:text-base lg:text-lg font-semibold text-red-700 mb-2 md:mb-3 lg:mb-4 text-center break-words ${
+                             <div className="relative w-full">
+                               <div className="bg-gradient-to-br from-red-50 to-red-100 p-2 md:p-3 lg:p-4 rounded-lg md:rounded-xl w-full">
+                                 <h4 className={`text-xs md:text-sm lg:text-base font-semibold text-red-700 mb-1.5 md:mb-2 lg:mb-3 text-center ${
                                    language === 'ar' ? 'font-cairo' : 'font-montserrat'
                                  }`}>
                                    {language === 'ar' ? 'قبل العلاج' : 'Before Treatment'}
@@ -2196,15 +2196,15 @@ const DoctorDetail: React.FC = () => {
                                  <img
                                    src={caseItem.beforeImage}
                                    alt={`Before - ${language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}`}
-                                   className="w-full h-48 md:h-56 lg:h-64 xl:h-80 object-cover rounded-lg shadow-lg"
+                                   className="w-full h-40 md:h-48 lg:h-56 xl:h-64 object-cover rounded-lg shadow-lg"
                                  />
                                </div>
                              </div>
 
                              {/* After Image */}
-                             <div className="relative w-full max-w-full">
-                               <div className="bg-gradient-to-br from-green-50 to-green-100 p-2 md:p-3 lg:p-4 rounded-lg md:rounded-xl w-full max-w-full">
-                                 <h4 className={`text-sm md:text-base lg:text-lg font-semibold text-green-700 mb-2 md:mb-3 lg:mb-4 text-center break-words ${
+                             <div className="relative w-full">
+                               <div className="bg-gradient-to-br from-green-50 to-green-100 p-2 md:p-3 lg:p-4 rounded-lg md:rounded-xl w-full">
+                                 <h4 className={`text-xs md:text-sm lg:text-base font-semibold text-green-700 mb-1.5 md:mb-2 lg:mb-3 text-center ${
                                    language === 'ar' ? 'font-cairo' : 'font-montserrat'
                                  }`}>
                                    {language === 'ar' ? 'بعد العلاج' : 'After Treatment'}
@@ -2212,20 +2212,20 @@ const DoctorDetail: React.FC = () => {
                                  <img
                                    src={caseItem.afterImage}
                                    alt={`After - ${language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}`}
-                                   className="w-full h-48 md:h-56 lg:h-64 xl:h-80 object-cover rounded-lg shadow-lg"
+                                   className="w-full h-40 md:h-48 lg:h-56 xl:h-64 object-cover rounded-lg shadow-lg"
                                  />
                                </div>
                              </div>
                            </div>
 
                            {/* Case Description */}
-                           <div className="text-center px-0 md:px-2 w-full max-w-full">
-                             <h3 className={`text-sm md:text-base lg:text-xl xl:text-2xl font-bold text-gray-800 mb-1 md:mb-2 lg:mb-4 break-words leading-tight ${
+                           <div className="text-center w-full px-1">
+                             <h3 className={`text-xs md:text-sm lg:text-base xl:text-lg font-bold text-gray-800 mb-1 md:mb-1.5 lg:mb-2 break-words leading-tight ${
                                language === 'ar' ? 'font-cairo' : 'font-montserrat'
                              }`}>
                                {language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}
                              </h3>
-                             <p className={`text-gray-600 text-xs md:text-sm lg:text-base xl:text-lg break-words leading-relaxed ${
+                             <p className={`text-gray-600 text-[10px] md:text-xs lg:text-sm break-words leading-relaxed ${
                                language === 'ar' ? 'font-cairo' : 'font-montserrat'
                              }`}>
                                {language === 'ar' 
