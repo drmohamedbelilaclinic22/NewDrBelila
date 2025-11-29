@@ -888,45 +888,47 @@ const DoctorDetail: React.FC = () => {
       <Header />
       
       {/* Back Button */}
-      <div className="fixed top-24 left-6 z-50">
+      <div className={`fixed top-24 z-50 ${language === 'ar' ? 'right-4 md:right-6' : 'left-4 md:left-6'}`}>
         <button
           onClick={() => navigate('/')}
           className="bg-white/90 backdrop-blur-md text-gray-800 p-3 rounded-full shadow-lg hover:bg-white transition-all duration-300 border border-gray-200"
           aria-label={language === 'ar' ? 'العودة للرئيسية' : 'Back to Home'}
         >
-          <ArrowLeft size={24} />
+          <ArrowLeft size={24} className={language === 'ar' ? 'rotate-180' : ''} />
         </button>
       </div>
 
       {/* Hero Section */}
-      <section className="w-full bg-[#00469e] py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+      <section className="w-full bg-[#00469e] py-12 md:py-16 lg:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-4">
+          <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-8 lg:gap-12 ${
+            language === 'ar' ? 'md:flex-row-reverse' : ''
+          }`}>
             {/* Doctor Image */}
-            <div className="md:w-1/2 flex justify-center">
+            <div className="w-full md:w-1/2 flex justify-center">
               <img
                 src={doctor.image}
                 alt={language === 'ar' ? doctor.nameAr : doctor.nameEn}
-                className="w-72 h-80 md:w-80 md:h-96 object-cover object-top rounded-2xl shadow-2xl"
+                className="w-64 h-72 sm:w-72 sm:h-80 md:w-80 md:h-96 object-cover object-top rounded-2xl shadow-2xl"
                 loading="lazy"
               />
             </div>
             
             {/* Doctor Info */}
-            <div className={`md:w-1/2 text-center md:text-left ${language === 'ar' ? 'md:text-right' : ''}`}>
-              <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 ${
+            <div className={`w-full md:w-1/2 text-center md:text-left ${language === 'ar' ? 'md:text-right' : ''}`}>
+              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 md:mb-4 ${
                 language === 'ar' ? 'font-cairo' : 'font-montserrat'
               }`}>
                 {language === 'ar' ? doctor.nameAr : doctor.nameEn}
               </h1>
               
-              <p className={`text-xl md:text-2xl text-[#54c9ea] mb-6 font-semibold ${
+              <p className={`text-lg sm:text-xl md:text-2xl text-[#54c9ea] mb-4 md:mb-6 font-semibold ${
                 language === 'ar' ? 'font-cairo' : 'font-montserrat'
               }`}>
                 {language === 'ar' ? doctor.titleAr : doctor.titleEn}
               </p>
               
-              <p className={`text-lg md:text-xl text-white/95 leading-relaxed ${
+              <p className={`text-base sm:text-lg md:text-xl text-white/95 leading-relaxed ${
                 language === 'ar' ? 'font-cairo' : 'font-montserrat'
               }`}>
                 {language === 'ar' ? doctor.descriptionAr : doctor.descriptionEn}
@@ -939,7 +941,7 @@ const DoctorDetail: React.FC = () => {
       {/* Case Gallery Section */}
       {doctor.cases && doctor.cases.length > 0 && (
         <section className="w-full bg-white py-12 md:py-16 lg:py-20">
-          <div className="max-w-6xl mx-auto px-3 md:px-4">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-4">
             <div className="text-center mb-16">
               <h2 className={`text-4xl font-bold text-gray-800 mb-6 ${
                 language === 'ar' ? 'font-cairo' : 'font-montserrat'
