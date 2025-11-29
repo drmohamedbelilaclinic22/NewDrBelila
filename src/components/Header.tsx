@@ -12,6 +12,8 @@ const Header: React.FC = () => {
   
   // Check if we're on the main page
   const isMainPage = location.pathname === '/';
+  // Check if we're on Dr. Amal's page
+  const isDrAmalPage = location.pathname === '/doctor/DrAmal';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -98,6 +100,22 @@ const Header: React.FC = () => {
             </div>
           )}
 
+          {/* Desktop Language Switch for Doctor Pages (except Dr. Amal) */}
+          {!isMainPage && !isDrAmalPage && (
+            <div className="hidden lg:flex items-center">
+              <button
+                onClick={toggleLanguage}
+                className={`px-4 py-2 rounded-full border-2 transition-all duration-300 ${
+                  isScrolled 
+                    ? 'border-[#01479e] text-[#01479e] hover:bg-[#01479e] hover:text-white' 
+                    : 'border-white text-white hover:bg-white hover:text-[#01479e]'
+                } ${language === 'ar' ? 'font-cairo' : 'font-montserrat'}`}
+              >
+                {language === 'en' ? <span className="font-cairo">العربية</span> : 'English'}
+              </button>
+            </div>
+          )}
+
           {/* Mobile Menu Button */}
           {isMainPage && (
             <div className="lg:hidden flex items-center space-x-4">
@@ -118,6 +136,22 @@ const Header: React.FC = () => {
                 }`}
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          )}
+
+          {/* Mobile Language Switch for Doctor Pages (except Dr. Amal) */}
+          {!isMainPage && !isDrAmalPage && (
+            <div className="lg:hidden flex items-center">
+              <button
+                onClick={toggleLanguage}
+                className={`px-3 py-1 rounded-full border text-sm transition-all duration-300 ${
+                  isScrolled 
+                    ? 'border-[#01479e] text-[#01479e]' 
+                    : 'border-white text-white'
+                } ${language === 'ar' ? 'font-cairo' : 'font-montserrat'}`}
+              >
+                {language === 'en' ? 'ع' : 'EN'}
               </button>
             </div>
           )}
