@@ -67,60 +67,64 @@ const Header: React.FC = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className={`hidden lg:flex items-center ${language === 'ar' ? 'gap-8' : 'space-x-8'}`}>
-            {navItems.map(item => (
+          {isMainPage && (
+            <div className={`hidden lg:flex items-center ${language === 'ar' ? 'gap-8' : 'space-x-8'}`}>
+              {navItems.map(item => (
+                <button
+                  key={item.key}
+                  onClick={() => handleNavigation(item.href)}
+                  className={`font-medium transition-all duration-300 relative group ${
+                    isScrolled ? 'text-gray-800' : 'text-white'
+                  } ${language === 'ar' ? 'font-cairo' : 'font-montserrat'}
+                  after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-1/2 
+                  after:bg-current after:transition-all after:duration-300 after:transform after:-translate-x-1/2
+                  hover:after:w-full`}
+                >
+                  {t(item.key)}
+                </button>
+              ))}
+              
+              {/* Language Switch */}
               <button
-                key={item.key}
-                onClick={() => handleNavigation(item.href)}
-                className={`font-medium transition-all duration-300 relative group ${
-                  isScrolled ? 'text-gray-800' : 'text-white'
-                } ${language === 'ar' ? 'font-cairo' : 'font-montserrat'}
-                after:content-[''] after:absolute after:w-0 after:h-0.5 after:bottom-0 after:left-1/2 
-                after:bg-current after:transition-all after:duration-300 after:transform after:-translate-x-1/2
-                hover:after:w-full`}
+                onClick={toggleLanguage}
+                className={`px-4 py-2 rounded-full border-2 transition-all duration-300 ${
+                  isScrolled 
+                    ? 'border-[#01479e] text-[#01479e] hover:bg-[#01479e] hover:text-white' 
+                    : 'border-white text-white hover:bg-white hover:text-[#01479e]'
+                } ${language === 'ar' ? 'font-cairo' : 'font-montserrat'}`}
               >
-                {t(item.key)}
+                {language === 'en' ? <span className="font-cairo">العربية</span> : 'English'}
               </button>
-            ))}
-            
-            {/* Language Switch */}
-            <button
-              onClick={toggleLanguage}
-              className={`px-4 py-2 rounded-full border-2 transition-all duration-300 ${
-                isScrolled 
-                  ? 'border-[#01479e] text-[#01479e] hover:bg-[#01479e] hover:text-white' 
-                  : 'border-white text-white hover:bg-white hover:text-[#01479e]'
-              } ${language === 'ar' ? 'font-cairo' : 'font-montserrat'}`}
-            >
-              {language === 'en' ? <span className="font-cairo">العربية</span> : 'English'}
-            </button>
-          </div>
+            </div>
+          )}
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center space-x-4">
-            <button
-              onClick={toggleLanguage}
-              className={`px-3 py-1 rounded-full border text-sm transition-all duration-300 ${
-                isScrolled 
-                  ? 'border-[#01479e] text-[#01479e]' 
-                  : 'border-white text-white'
-              } ${language === 'ar' ? 'font-cairo' : 'font-montserrat'}`}
-            >
-              {language === 'en' ? 'ع' : 'EN'}
-            </button>
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`p-2 transition-colors duration-300 ${
-                isScrolled ? 'text-gray-800' : 'text-white'
-              }`}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {isMainPage && (
+            <div className="lg:hidden flex items-center space-x-4">
+              <button
+                onClick={toggleLanguage}
+                className={`px-3 py-1 rounded-full border text-sm transition-all duration-300 ${
+                  isScrolled 
+                    ? 'border-[#01479e] text-[#01479e]' 
+                    : 'border-white text-white'
+                } ${language === 'ar' ? 'font-cairo' : 'font-montserrat'}`}
+              >
+                {language === 'en' ? 'ع' : 'EN'}
+              </button>
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className={`p-2 transition-colors duration-300 ${
+                  isScrolled ? 'text-gray-800' : 'text-white'
+                }`}
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
+        {isMainPage && isMenuOpen && (
           <div className="lg:hidden mt-4 py-4 bg-white rounded-lg shadow-lg">
             {navItems.map(item => (
               <button
