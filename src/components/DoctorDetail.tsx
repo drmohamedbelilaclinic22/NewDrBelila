@@ -2169,28 +2169,28 @@ const DoctorDetail: React.FC = () => {
                    </div>
                  ) : doctor.id === 10 ? (
                    // Before/After Gallery for Dr. Amal - Side by Side
-                   <div className="space-y-8 md:space-y-12 w-full">
+                   <div className="space-y-6 sm:space-y-8 md:space-y-12 w-full">
                      {doctor.cases.map((caseItem, index) => (
                        <div
                          key={caseItem.id}
-                         className="bg-white rounded-xl md:rounded-2xl shadow-xl p-4 md:p-8 relative overflow-hidden w-full"
+                         className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg sm:shadow-xl p-3 sm:p-4 md:p-6 lg:p-8 relative overflow-hidden w-full"
                        >
                          {/* Background Pattern */}
-                         <div className={`absolute top-0 ${language === 'ar' ? 'right-0' : 'left-0'} w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-blue-100 to-cyan-200 rounded-full -translate-y-12 md:-translate-y-16 ${language === 'ar' ? 'translate-x-12 md:translate-x-16' : '-translate-x-12 md:-translate-x-16'} opacity-50`}></div>
-                         <div className={`absolute bottom-0 ${language === 'ar' ? 'left-0' : 'right-0'} w-16 h-16 md:w-24 md:h-24 bg-gradient-to-tr from-indigo-100 to-purple-200 rounded-full translate-y-8 md:translate-y-12 ${language === 'ar' ? '-translate-x-8 md:-translate-x-12' : 'translate-x-8 md:translate-x-12'} opacity-50`}></div>
+                         <div className={`absolute top-0 ${language === 'ar' ? 'right-0' : 'left-0'} w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-gradient-to-br from-blue-100 to-cyan-200 rounded-full -translate-y-10 sm:-translate-y-12 md:-translate-y-16 ${language === 'ar' ? 'translate-x-10 sm:translate-x-12 md:translate-x-16' : '-translate-x-10 sm:-translate-x-12 md:-translate-x-16'} opacity-50`}></div>
+                         <div className={`absolute bottom-0 ${language === 'ar' ? 'left-0' : 'right-0'} w-14 h-14 sm:w-16 sm:h-16 md:w-24 md:h-24 bg-gradient-to-tr from-indigo-100 to-purple-200 rounded-full translate-y-7 sm:translate-y-8 md:translate-y-12 ${language === 'ar' ? '-translate-x-7 sm:-translate-x-8 md:-translate-x-12' : 'translate-x-7 sm:translate-x-8 md:translate-x-12'} opacity-50`}></div>
                          
                          {/* Case Number Badge */}
-                         <div className={`absolute top-4 md:top-8 ${language === 'ar' ? 'right-4 md:right-8' : 'left-4 md:left-8'} bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full text-sm md:text-base font-semibold shadow-lg z-20 whitespace-nowrap`}>
+                         <div className={`absolute top-3 sm:top-4 md:top-6 lg:top-8 ${language === 'ar' ? 'right-3 sm:right-4 md:right-6 lg:right-8' : 'left-3 sm:left-4 md:left-6 lg:left-8'} bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-xs sm:text-sm md:text-base font-semibold shadow-lg z-20 whitespace-nowrap`}>
                            {language === 'ar' ? `حالة ${index + 1}` : `Case ${index + 1}`}
                          </div>
 
                          {/* Before/After Images Side by Side */}
-                         <div className="relative z-10 mt-4 md:mt-4">
-                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-4 md:mb-6">
+                         <div className="relative z-10 mt-8 sm:mt-10 md:mt-12">
+                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8 mb-3 sm:mb-4 md:mb-6">
                              {/* Before Image */}
-                             <div className="relative">
-                               <div className="bg-gradient-to-br from-red-50 to-red-100 p-3 md:p-4 rounded-xl">
-                                 <h4 className={`text-sm md:text-lg font-semibold text-red-700 mb-3 md:mb-4 text-center ${
+                             <div className="relative w-full">
+                               <div className="bg-gradient-to-br from-red-50 to-red-100 p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl">
+                                 <h4 className={`text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-red-700 mb-2 sm:mb-3 md:mb-4 text-center ${
                                    language === 'ar' ? 'font-cairo' : 'font-montserrat'
                                  }`}>
                                    {language === 'ar' ? 'قبل العلاج' : 'Before Treatment'}
@@ -2198,15 +2198,15 @@ const DoctorDetail: React.FC = () => {
                                  <img
                                    src={caseItem.beforeImage}
                                    alt={`Before - ${language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}`}
-                                   className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
+                                   className="w-full h-48 sm:h-56 md:h-64 lg:h-80 object-cover rounded-lg shadow-lg"
                                  />
                                </div>
                              </div>
 
                              {/* After Image */}
-                             <div className="relative">
-                               <div className="bg-gradient-to-br from-green-50 to-green-100 p-3 md:p-4 rounded-xl">
-                                 <h4 className={`text-sm md:text-lg font-semibold text-green-700 mb-3 md:mb-4 text-center ${
+                             <div className="relative w-full">
+                               <div className="bg-gradient-to-br from-green-50 to-green-100 p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl">
+                                 <h4 className={`text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-green-700 mb-2 sm:mb-3 md:mb-4 text-center ${
                                    language === 'ar' ? 'font-cairo' : 'font-montserrat'
                                  }`}>
                                    {language === 'ar' ? 'بعد العلاج' : 'After Treatment'}
@@ -2214,20 +2214,20 @@ const DoctorDetail: React.FC = () => {
                                  <img
                                    src={caseItem.afterImage}
                                    alt={`After - ${language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}`}
-                                   className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg"
+                                   className="w-full h-48 sm:h-56 md:h-64 lg:h-80 object-cover rounded-lg shadow-lg"
                                  />
                                </div>
                              </div>
                            </div>
 
                            {/* Case Description */}
-                           <div className="text-center w-full px-2 md:px-0">
-                             <h3 className={`text-base md:text-2xl font-bold text-gray-800 mb-2 md:mb-3 break-words leading-tight ${
+                           <div className="text-center w-full px-1 sm:px-2 md:px-0">
+                             <h3 className={`text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold text-gray-800 mb-1.5 sm:mb-2 md:mb-3 break-words leading-tight ${
                                language === 'ar' ? 'font-cairo' : 'font-montserrat'
                              }`}>
                                {language === 'ar' ? caseItem.descriptionAr : caseItem.descriptionEn}
                              </h3>
-                             <p className={`text-gray-600 text-sm md:text-lg break-words leading-relaxed ${
+                             <p className={`text-gray-600 text-xs sm:text-sm md:text-base lg:text-lg break-words leading-relaxed ${
                                language === 'ar' ? 'font-cairo' : 'font-montserrat'
                              }`}>
                                {language === 'ar' 
@@ -2417,24 +2417,6 @@ const DoctorDetail: React.FC = () => {
        
        {/* Footer */}
        <Footer />
-       
-       {/* Floating Facebook Icon */}
-       <a
-         href="https://www.facebook.com/profile.php?id=100094644267456"
-         target="_blank"
-         rel="noopener noreferrer"
-         className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white p-2 md:p-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 animate-bounce"
-         aria-label="Visit our Facebook page"
-       >
-         <svg
-           className="w-4 h-4 md:w-6 md:h-6"
-           fill="currentColor"
-           viewBox="0 0 24 24"
-           xmlns="http://www.w3.org/2000/svg"
-         >
-           <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-         </svg>
-       </a>
      </div>
    );
  };
